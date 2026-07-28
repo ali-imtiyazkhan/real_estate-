@@ -35,7 +35,7 @@ export default function SellProperty() {
             </div>
           </div>
 
-          <div className="mt-40 pt-8 border-t border-base-200 grid lg:grid-cols-3 gap-8">
+          <div className="mt-16 md:mt-40 pt-8 border-t border-base-200 grid lg:grid-cols-3 gap-8">
             <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-base-900">
               List your home with confidence
             </h2>
@@ -85,7 +85,7 @@ export default function SellProperty() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-40 pt-8 border-t border-base-200">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16 md:mt-40 pt-8 border-t border-base-200">
             <div>
               <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-base-900">
                 Prime Exposure
@@ -163,7 +163,7 @@ export default function SellProperty() {
             </div>
           </div>
 
-          <div className="mt-40 pt-8 border-t border-base-200 grid lg:grid-cols-3 gap-8">
+          <div className="mt-16 md:mt-40 pt-8 border-t border-base-200 grid lg:grid-cols-3 gap-8">
             <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-base-900">
               Contact us about selling your property
             </h2>

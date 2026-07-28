@@ -24,7 +24,7 @@ export default async function PropertyDetail({
             decoding="async"
             width="1500"
             height="1000"
-            className="w-full h-[75vh] object-cover"
+            className="w-full h-[60vh] 2xl:h-[75vh] object-cover"
           />
           <div className="grid lg:grid-cols-3 gap-8 pt-8 mt-8 border-t border-base-200">
             <div className="lg:col-span-2">

@@ -52,7 +52,7 @@ export default function PropertyCard({
         <h3 className="text-lg font-medium text-base-900 mt-2 tracking-tight">{address}</h3>
         <p className="text-sm text-base-500 mt-1">{location}</p>
       </div>
-      <dl className="w-full border-t border-base-200 mt-4 pt-4 grid grid-cols-3 gap-4 text-sm">
+      <dl className="w-full border-t border-base-200 mt-4 pt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
         <div>
           <dt className="text-base-500 text-xs uppercase tracking-wide">Sqft</dt>
           <dd className="text-base-900 font-medium mt-1 tabular-nums">{sqft}</dd>

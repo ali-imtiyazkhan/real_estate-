@@ -5,13 +5,13 @@ export default function Footer() {
 
   return (
     <section>
-      <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12 pt-40">
+      <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12 pt-20 md:pt-40">
         <div className="relative overflow-hidden">
           <div className="items-center justify-center flex flex-col text-black">
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-base-900">Quartiere</h2>
           </div>
           <div className="pt-8 mt-8 border-t border-base-200">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               <div>
                 <h3 className="text-base text-base-900">Navigation</h3>
                 <ul className="list-none text-base-500 mt-8 text-base gap-1 list-inside flex flex-col">
