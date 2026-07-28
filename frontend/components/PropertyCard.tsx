@@ -1,0 +1,74 @@
+import Link from "next/link";
+
+interface PropertyCardProps {
+  id: string;
+  title: string;
+  projectName: string;
+  address: string;
+  location: string;
+  sqft: string;
+  floor: string;
+  rooms: string;
+  price: string;
+  image: string;
+  isRental?: boolean;
+}
+
+export default function PropertyCard({
+  id,
+  title,
+  projectName,
+  address,
+  location,
+  sqft,
+  floor,
+  rooms,
+  price,
+  image,
+}: PropertyCardProps) {
+  return (
+    <Link
+      href={`/property/${id}`}
+      title={title}
+      className="text-xs 2xl:text-sm duration-300 hover:!opacity-100 transition-all group-hover/props:opacity-40 focus-visible:!opacity-100 rounded-sm outline-offset-4"
+    >
+      <div className="relative overflow-hidden group/card">
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          decoding="async"
+          width="400"
+          height="400"
+          className="aspect-[4/3] object-cover object-center group-hover/card:scale-105 transition-transform duration-700 ease-out"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-base-900/25 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+        <div className="bg-white absolute bottom-0 right-0 px-4 py-3 text-xs font-medium uppercase tracking-wider text-base-900 shadow-sm translate-y-0 group-hover/card:-translate-y-0.5 transition-transform duration-300">
+          View listing
+        </div>
+      </div>
+      <div className="pt-5 pb-1">
+        <p className="section-label">{projectName}</p>
+        <h3 className="text-lg font-medium text-base-900 mt-2 tracking-tight">{address}</h3>
+        <p className="text-sm text-base-500 mt-1">{location}</p>
+      </div>
+      <dl className="w-full border-t border-base-200 mt-4 pt-4 grid grid-cols-3 gap-4 text-sm">
+        <div>
+          <dt className="text-base-500 text-xs uppercase tracking-wide">Sqft</dt>
+          <dd className="text-base-900 font-medium mt-1 tabular-nums">{sqft}</dd>
+        </div>
+        <div>
+          <dt className="text-base-500 text-xs uppercase tracking-wide">Rooms</dt>
+          <dd className="text-base-900 font-medium mt-1 tabular-nums">{rooms}</dd>
+        </div>
+        <div>
+          <dt className="text-base-500 text-xs uppercase tracking-wide">Floor</dt>
+          <dd className="text-base-900 font-medium mt-1 tabular-nums">{floor}</dd>
+        </div>
+      </dl>
+      <p className="text-xl font-medium text-base-900 mt-4 pt-4 border-t border-base-200 tabular-nums tracking-tight">
+        {price}
+      </p>
+    </Link>
+  );
+}

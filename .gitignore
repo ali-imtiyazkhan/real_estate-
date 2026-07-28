@@ -1,0 +1,31 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+.vscode
+*.swp
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies (root-level only)
+node_modules/
+.pnp
+.pnp.js
+yarn-error.log
+yarn-debug.log
+.pnpm-debug.log
+
+# Logs
+logs/
+*.log
+
+# Testing
+coverage/
+
+# Misc
+*.pem
