@@ -13,6 +13,15 @@ export default async function PropertyDetail({
 
   if (!prop) notFound();
 
+  const gallery =
+    prop.gallery && prop.gallery.length > 0
+      ? prop.gallery
+      : [
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80",
+          "https://images.unsplash.com/photo-1600566753086-00f18d8f5b4a?w=400&q=80",
+          "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=400&q=80",
+        ];
+
   return (
     <>
       <section>
@@ -46,40 +55,36 @@ export default async function PropertyDetail({
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-6">
-                <div className="overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80"
-                    alt="Gallery"
-                    loading="lazy"
-                    decoding="async"
-                    width="400"
-                    height="300"
-                    className="aspect-[4/3] object-cover w-full transition-transform duration-500 hover:scale-110"
-                  />
-                </div>
-                <div className="overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1600566753086-00f18d8f5b4a?w=400&q=80"
-                    alt="Gallery"
-                    loading="lazy"
-                    decoding="async"
-                    width="400"
-                    height="300"
-                    className="aspect-[4/3] object-cover w-full transition-transform duration-500 hover:scale-110"
-                  />
-                </div>
-                <div className="overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=400&q=80"
-                    alt="Gallery"
-                    loading="lazy"
-                    decoding="async"
-                    width="400"
-                    height="300"
-                    className="aspect-[4/3] object-cover w-full transition-transform duration-500 hover:scale-110"
-                  />
-                </div>
+                {gallery.map((src) => (
+                  <div key={src} className="overflow-hidden">
+                    <img
+                      src={src}
+                      alt={prop.title}
+                      loading="lazy"
+                      decoding="async"
+                      width="400"
+                      height="300"
+                      className="aspect-[4/3] object-cover w-full transition-transform duration-500 hover:scale-110"
+                    />
+                  </div>
+                ))}
               </div>
+              {prop.map && (
+                <div className="mt-6">
+                  <p className="section-label mb-2">Property layout / Map</p>
+                  <div className="overflow-hidden">
+                    <img
+                      src={prop.map}
+                      alt={`${prop.title} layout map`}
+                      loading="lazy"
+                      decoding="async"
+                      width="1200"
+                      height="800"
+                      className="w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
             <div>
               <div className="p-8 outline outline-base-200">

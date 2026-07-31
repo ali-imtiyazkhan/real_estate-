@@ -1,4 +1,20 @@
-export const properties = [
+export interface Property {
+  id: string;
+  slug: string;
+  title: string;
+  projectName: string;
+  address: string;
+  location: string;
+  sqft: string;
+  floor: string;
+  rooms: string;
+  price: string;
+  image: string;
+  gallery?: string[];
+  map?: string;
+}
+
+export const properties: Property[] = [
   {
     id: "2",
     slug: "beachfront-bliss",
@@ -10,7 +26,9 @@ export const properties = [
     floor: "1",
     rooms: "4",
     price: "$750,000",
-    image: "https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=800&q=80",
+    image: "/property-1.jpg",
+    gallery: ["/property-1.jpg", "/property-2.jpg", "/property-3.jpg"],
+    map: "/property-map.png",
   },
   {
     id: "3",
@@ -66,7 +84,7 @@ export const properties = [
   },
 ];
 
-export const rentalProperties = [
+export const rentalProperties: Property[] = [
   {
     id: "r1",
     slug: "downtown-apartment",
