@@ -108,69 +108,6 @@ export const rentalProperties = [
   },
 ];
 
-export const agents = [
-  {
-    id: "1",
-    name: "Serena Aandahl",
-    role: "Real Estate Professional",
-    phone: "971 4 455 2090",
-    phone2: "1 201 707 5426",
-    office: "Quartiere International Realty Quebec",
-    address: "1430 Sherbrooke Street West Montreal, QC, H3G 1K4 Canada",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
-  },
-  {
-    id: "2",
-    name: "Marco Rossi",
-    role: "Real Estate Specialist",
-    phone: "971 4 455 2090",
-    phone2: "1 201 707 5426",
-    office: "Quartiere International Realty Quebec",
-    address: "1430 Sherbrooke Street West Montreal, QC, H3G 1K4 Canada",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-  },
-  {
-    id: "3",
-    name: "Sofia López",
-    role: "Real Estate Agent",
-    phone: "971 4 455 2090",
-    phone2: "1 201 707 5426",
-    office: "Quartiere International Realty Quebec",
-    address: "1430 Sherbrooke Street West Montreal, QC, H3G 1K4 Canada",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
-  },
-  {
-    id: "4",
-    name: "Giovanni Bianchi",
-    role: "Real Estate Expert",
-    phone: "971 4 455 2090",
-    phone2: "1 201 707 5426",
-    office: "Quartiere International Realty Quebec",
-    address: "1430 Sherbrooke Street West Montreal, QC, H3G 1K4 Canada",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
-  },
-  {
-    id: "5",
-    name: "Matteo Rossi",
-    role: "Real Estate Specialist",
-    phone: "971 4 455 2090",
-    phone2: "1 201 707 5426",
-    office: "Quartiere International Realty Quebec",
-    address: "1430 Sherbrooke Street West Montreal, QC, H3G 1K4 Canada",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-  },
-  {
-    id: "6",
-    name: "Isabella Ferrari",
-    role: "Real Estate Consultant",
-    phone: "971 4 455 2090",
-    phone2: "1 201 707 5426",
-    office: "Quartiere International Realty Quebec",
-    address: "1430 Sherbrooke Street West Montreal, QC, H3G 1K4 Canada",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-  },
-];
-
 export const features = [
   {
     title: "Easy Financing",

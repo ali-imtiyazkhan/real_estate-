@@ -19,12 +19,13 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-linear-to-tr from-base-900/50 via-base-900/10 to-transparent pointer-events-none" />
             <div className="absolute bg-white/95 backdrop-blur-sm bottom-0 right-0 p-8 w-full md:max-w-sm flex flex-col gap-3 shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
-              <p className="section-label">Quartiere / Real Estate</p>
+              <p className="section-label">Fair Deal Property / Real Estate</p>
+              <p className="text-sm font-medium text-base-900">Mr. <b>Govind Singh</b></p>
               <a
                 className="text-sm font-medium text-base-900 hover:text-base-600 transition-colors"
-                href="tel:+1-202-555-0123"
+                href="tel:+919610016666"
               >
-                (202) 555-0123
+                +91 96100 16666
               </a>
             </div>
           </div>
@@ -112,7 +113,7 @@ export default function Home() {
                 </h3>
                 <div className="mt-8 pt-8 border-t border-base-200">
                   <p className="text-base text-base-500">
-                    The Quartiere International Realty&reg; network is an exclusive
+                    The Fair Deal Property network is an exclusive
                     association of distinguished residential luxury real estate
                     brokerage companies throughout the world. Our agents are local
                     experts, globally connected and ready to guide you on your

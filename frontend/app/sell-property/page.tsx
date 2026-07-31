@@ -16,14 +16,14 @@ export default function SellProperty() {
               className="w-full h-[60vh] 2xl:h-[75vh] object-cover"
             />
             <div className="absolute bg-white bottom-0 right-0 p-8 w-full md:max-w-xs flex flex-col">
-              <h3 className="text-sm">Quartiere / Sell Your Property</h3>
+              <h3 className="text-sm">Fair Deal Property / Sell Your Property</h3>
               <div>
-                <a className="text-xs" href="tel:+1-202-555-0123">Tel: (202) 555-0123</a>
+                <a className="text-xs" href="tel:+919610016666">Tel: +91 96100 16666</a>
               </div>
             </div>
           </div>
           <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl text-balance font-medium tracking-tighter text-base-900 mt-12">
-            Sell your property with Quartiere
+            Sell your property with Fair Deal Property
           </h1>
           <div className="grid lg:grid-cols-3 pt-8 mt-8 border-t border-base-200">
             <div></div>

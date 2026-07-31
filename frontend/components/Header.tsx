@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 const primaryNav = [
   { href: "/for-sale", label: "For sale" },
   { href: "/for-rent", label: "For rent" },
-  { href: "/agents", label: "Agents" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -125,7 +124,6 @@ export default function Header() {
                       <li><Link href="/for-sale" className="hover:text-base-900 py-1 inline-block transition-colors">Properties for sale</Link></li>
                       <li><Link href="/for-rent" className="hover:text-base-900 py-1 inline-block transition-colors">Properties for rent</Link></li>
                       <li><Link href="/sell-property" className="hover:text-base-900 py-1 inline-block transition-colors">Sell your property</Link></li>
-                      <li><Link href="/agents" className="hover:text-base-900 py-1 inline-block transition-colors">Meet our agents</Link></li>
                       <li><Link href="/contact" className="hover:text-base-900 py-1 inline-block transition-colors">Contact us</Link></li>
                     </ul>
                   </div>
@@ -155,26 +153,6 @@ export default function Header() {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:col-span-2 xl:pl-8">
-                  <div className="grid grid-cols-1 gap-8 2xl:grid-cols-2">
-                    <div className="flex flex-col h-full justify-between">
-                      <div>
-                        <h3 className="text-base text-base-900 font-medium">Meet a local expert who can help your journey</h3>
-                        <p className="text-sm mt-2 text-pretty text-base-500">Our network of local real estate professionals apply their local market knowledge to create a comprehensive and customized plan for your home.</p>
-                      </div>
-                      <div className="mt-8">
-                        <Link href="/agents" className="link-arrow text-sm">See all agents</Link>
-                      </div>
-                    </div>
-                    <img
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
-                      alt="Agent"
-                      loading="lazy"
-                      decoding="async"
-                      width="400"
-                      height="400"
-                      className="aspect-[4/3] hidden xl:block 2xl:aspect-[4/7] hover:scale-105 transition-transform object-cover object-top duration-500"
-                    />
-                  </div>
                   <div className="grid grid-cols-1 gap-8 2xl:grid-cols-2">
                     <div className="flex flex-col h-full justify-between">
                       <div>

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Quartiere — Real Estate",
-  description: "Discover your dream home. Explore our real estate listings today.",
+  title: "Fair Deal Property — Real Estate",
+  description: "Discover your dream home. Explore our real estate listings today. Fair Deal Property — Govind Singh, +91 96100 16666.",
 };
 
 export default function RootLayout({

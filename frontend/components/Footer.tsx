@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12 pt-20 md:pt-40">
         <div className="relative overflow-hidden">
           <div className="items-center justify-center flex flex-col text-black">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-base-900">Quartiere</h2>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-base-900">Fair Deal Property</h2>
           </div>
           <div className="pt-8 mt-8 border-t border-base-200">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -48,7 +48,11 @@ export default function Footer() {
           </div>
           <div className="mt-8 pt-8 border-t border-base-200 space-y-2">
             <span className="text-sm text-base-900">
-              Copyright &copy; 2006-{currentYear} Quartiere&apos;s International Realty LLC. All Rights Reserved.
+              Govind Singh &middot; +91 96100 16666
+            </span>
+            <br />
+            <span className="text-sm text-base-900">
+              Copyright &copy; 2006-{currentYear} Fair Deal Property. All Rights Reserved.
             </span>
           </div>
         </div>

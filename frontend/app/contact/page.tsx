@@ -104,10 +104,10 @@ export default function Contact() {
               <div>
                 <label className="block text-xl font-medium text-base-900 mb-2">Office</label>
                 <select className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black appearance-none">
-                  <option>Quartiere International Realty Quebec</option>
-                  <option>Quartiere International Realty New York</option>
-                  <option>Quartiere International Realty London</option>
-                  <option>Quartiere International Realty Dubai</option>
+                  <option>Fair Deal Property</option>
+                  <option>Fair Deal Property - New York</option>
+                  <option>Fair Deal Property - London</option>
+                  <option>Fair Deal Property - Dubai</option>
                 </select>
               </div>
             </div>

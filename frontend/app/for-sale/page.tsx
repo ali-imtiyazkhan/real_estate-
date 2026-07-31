@@ -48,7 +48,7 @@ export default function ForSale() {
                 </h3>
                 <div className="mt-8 pt-8 border-t border-base-200">
                   <p className="text-base text-base-500">
-                    The Quartiere International Realty&reg; network is an exclusive
+                    The Fair Deal Property network is an exclusive
                     association of distinguished residential luxury real estate
                     brokerage companies throughout the world. Our agents are local
                     experts, globally connected and ready to guide you on your
