@@ -1,9 +1,36 @@
 import Link from "next/link";
+import Image from "next/image";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AgentForm from "@/components/AgentForm";
 import { getProperties, getProperty } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id: rawId } = await params;
+  const { data: prop } = await getProperty(decodeURIComponent(rawId)).catch(() => ({
+    data: null,
+  }));
+
+  if (!prop) {
+    return { title: "Property | Fair Deal Property" };
+  }
+
+  return {
+    title: `${prop.title} | Fair Deal Property`,
+    description: `${prop.title} — ${prop.price}, ${prop.sqft} sqft, ${prop.rooms} rooms, ${prop.location}. Contact Fair Deal Property at +91 96100 16666.`,
+    openGraph: {
+      title: prop.title,
+      description: `${prop.location} · ${prop.price}`,
+      images: [prop.image],
+    },
+  };
+}
 
 export default async function PropertyDetail({
   params,
@@ -38,13 +65,12 @@ export default async function PropertyDetail({
     <>
       <section>
         <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12">
-          <img
+          <Image
             src={prop.image}
             alt={prop.title}
-            loading="lazy"
-            decoding="async"
-            width="1500"
-            height="1000"
+            width={1500}
+            height={1000}
+            sizes="100vw"
             className="w-full h-[60vh] 2xl:h-[75vh] object-cover"
           />
           <div className="grid lg:grid-cols-3 gap-8 pt-8 mt-8 border-t border-base-200">
@@ -69,13 +95,12 @@ export default async function PropertyDetail({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-6">
                 {gallery.map((src) => (
                   <div key={src} className="overflow-hidden">
-                    <img
+                    <Image
                       src={src}
                       alt={prop.title}
-                      loading="lazy"
-                      decoding="async"
-                      width="400"
-                      height="300"
+                      width={400}
+                      height={300}
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="aspect-[4/3] object-cover w-full transition-transform duration-500 hover:scale-110"
                     />
                   </div>
@@ -85,13 +110,12 @@ export default async function PropertyDetail({
                 <div className="mt-6">
                   <p className="section-label mb-2">Property layout / Map</p>
                   <div className="overflow-hidden">
-                    <img
+                    <Image
                       src={prop.map}
                       alt={`${prop.title} layout map`}
-                      loading="lazy"
-                      decoding="async"
-                      width="1200"
-                      height="800"
+                      width={1200}
+                      height={800}
+                      sizes="100vw"
                       className="w-full object-cover transition-transform duration-500 hover:scale-105"
                     />
                   </div>
@@ -123,13 +147,12 @@ export default async function PropertyDetail({
               {related.map((p) => (
                 <Link key={p.id} href={`/property/${p.slug}`} className="group">
                   <div className="overflow-hidden">
-                    <img
+                    <Image
                       src={p.image}
                       alt={p.title}
-                      loading="lazy"
-                      decoding="async"
-                      width="400"
-                      height="300"
+                      width={400}
+                      height={300}
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="aspect-[4/3] object-cover w-full transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>

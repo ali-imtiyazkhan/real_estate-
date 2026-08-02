@@ -14,9 +14,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Fair Deal Property — Real Estate",
   description: "Discover your dream home. Explore our real estate listings today. Fair Deal Property — Govind Singh, +91 96100 16666.",
+  openGraph: {
+    title: "Fair Deal Property — Real Estate",
+    description: "Discover your dream home. Explore our real estate listings today.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import PropertyCard from "@/components/PropertyCard";
 import { getFeatures, getProperties } from "@/lib/api";
 
@@ -15,13 +16,13 @@ export default async function Home() {
       <section className="overflow-hidden">
         <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12">
           <div className="relative">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1500&q=80"
               alt="Hero"
-              loading="eager"
-              decoding="async"
-              width="1500"
-              height="1000"
+              priority
+              width={1500}
+              height={1000}
+              sizes="100vw"
               className="w-full h-[60vh] 2xl:h-[75vh] object-cover relative"
             />
             <div className="absolute inset-0 bg-linear-to-tr from-base-900/50 via-base-900/10 to-transparent pointer-events-none" />
@@ -104,13 +105,12 @@ export default async function Home() {
       <section>
         <div className="mx-auto max-w-7xl px-8 md:px-12 py-12">
           <div className="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:items-center">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
               alt="Sell your property"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="1000"
+              width={800}
+              height={1000}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="max-h-80 md:max-h-[80dvh] w-full object-cover"
             />
             <div className="p-8 lg:p-20 h-full flex flex-col items-center justify-center outline outline-base-200">

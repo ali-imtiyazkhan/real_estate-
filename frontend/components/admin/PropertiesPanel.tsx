@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   createAdminProperty,
   deleteAdminProperty,
@@ -115,11 +116,12 @@ export default function PropertiesPanel({ token }: { token: string }) {
         {properties.map((prop) => (
           <div key={prop.id} className="py-4 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 min-w-0">
-              <img
+              <Image
                 src={prop.image}
                 alt=""
-                width="64"
-                height="48"
+                width={64}
+                height={48}
+                sizes="64px"
                 className="w-16 h-12 object-cover shrink-0"
               />
               <div className="min-w-0">

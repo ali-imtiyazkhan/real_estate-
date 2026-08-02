@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import SellForm from "@/components/SellForm";
+
+export const metadata: Metadata = {
+  title: "Sell Your Property | Fair Deal Property",
+  description:
+    "Sell your property with Fair Deal Property — privileged access to qualified buyers, global reach and a bespoke marketing plan for your home.",
+};
 
 export default function SellProperty() {
   return (
@@ -6,13 +14,12 @@ export default function SellProperty() {
       <section className="overflow-hidden">
         <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12">
           <div className="relative">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1500&q=80"
               alt="Sell your property"
-              loading="lazy"
-              decoding="async"
-              width="1500"
-              height="1000"
+              width={1500}
+              height={1000}
+              sizes="100vw"
               className="w-full h-[60vh] 2xl:h-[75vh] object-cover"
             />
             <div className="absolute bg-white bottom-0 right-0 p-8 w-full md:max-w-xs flex flex-col">
@@ -41,22 +48,20 @@ export default function SellProperty() {
             </h2>
             <div className="lg:col-span-2 lg:col-start-2">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"
                   alt="Property"
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="600"
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="w-full object-cover aspect-[4/3]"
                 />
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600566753086-00f18d8f5b4a?w=800&q=80"
                   alt="Property"
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="600"
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="w-full object-cover aspect-[4/3]"
                 />
               </div>
@@ -64,13 +69,12 @@ export default function SellProperty() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 items-stretch mt-12">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
               alt="Global"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="1000"
+              width={800}
+              height={1000}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="max-h-80 md:max-h-full w-full object-cover h-full"
             />
             <div className="p-8 lg:p-20 flex flex-col justify-center outline outline-base-200">
@@ -98,13 +102,12 @@ export default function SellProperty() {
             </div>
             <div>
               <div className="aspect-[4/3] overflow-hidden">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
                   alt="Prime Exposure"
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="600"
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="w-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
@@ -114,13 +117,12 @@ export default function SellProperty() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
             <div className="order-2 lg:order-1">
               <div className="aspect-[4/3] overflow-hidden">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80"
                   alt="Global Connections"
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="600"
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="w-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
@@ -150,13 +152,12 @@ export default function SellProperty() {
             </div>
             <div>
               <div className="aspect-[4/3] overflow-hidden">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
                   alt="Unmatched Marketing"
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="600"
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="w-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>

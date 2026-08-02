@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const primaryNav = [
@@ -141,13 +142,12 @@ export default function Header() {
                         <Link href="/contact" className="link-arrow text-sm">Get in touch</Link>
                       </div>
                     </div>
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80"
                       alt="House"
-                      loading="lazy"
-                      decoding="async"
-                      width="400"
-                      height="400"
+                      width={400}
+                      height={400}
+                      sizes="(min-width: 1280px) 400px, 0px"
                       className="aspect-[4/3] hidden xl:block 2xl:aspect-[4/7] hover:scale-105 transition-transform object-cover object-top duration-500"
                     />
                   </div>

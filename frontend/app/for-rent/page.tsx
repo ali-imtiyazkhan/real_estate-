@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import PropertyCard from "@/components/PropertyCard";
 import { getProperties } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Properties for Rent | Fair Deal Property",
+  description:
+    "Browse rental properties — apartments, studios and family homes. Fair Deal Property, Govind Singh, +91 96100 16666.",
+};
 
 export default async function ForRent() {
   const { data: rentalProperties } = await getProperties({ type: "rent", limit: 50 });

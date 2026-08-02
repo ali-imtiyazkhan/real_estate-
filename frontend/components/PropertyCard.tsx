@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface PropertyCardProps {
   id: string;
@@ -35,13 +36,12 @@ export default function PropertyCard({
       className="text-xs 2xl:text-sm duration-300 hover:!opacity-100 transition-all group-hover/props:opacity-40 focus-visible:!opacity-100 rounded-sm outline-offset-4"
     >
       <div className="relative overflow-hidden group/card">
-        <img
+        <Image
           src={image}
           alt={title}
-          loading="lazy"
-          decoding="async"
-          width="400"
-          height="400"
+          width={400}
+          height={400}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="aspect-[4/3] object-cover object-center group-hover/card:scale-105 transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-linear-to-t from-base-900/25 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />

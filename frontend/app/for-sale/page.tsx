@@ -1,9 +1,17 @@
 import Link from "next/link";
+import Image from "next/image";
+import type { Metadata } from "next";
 import PropertyCard from "@/components/PropertyCard";
 import SearchModal from "@/components/SearchModal";
 import { getProperties } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Properties for Sale | Fair Deal Property",
+  description:
+    "Browse homes for sale — from cozy apartments to spacious estates. Fair Deal Property, Govind Singh, +91 96100 16666.",
+};
 
 export default async function ForSale() {
   const { data: properties } = await getProperties({ type: "sale", limit: 50 });
@@ -13,9 +21,8 @@ export default async function ForSale() {
       <section className="overflow-hidden">
         <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12 lg:pt-32">
           <div className="grid lg:grid-cols-3 gap-8 items-end">
-            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium tracking-tighter lg:col-span-2 text-base-900">
-              Available properties, from cozy apartments to spacious estates, and
-              discover the ideal property to call your own.
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-balance font-medium tracking-tighter lg:col-span-2 text-base-900">
+              Properties for sale
             </h1>
             <p className="text-base text-base-500">
               Browse our diverse selection of homes, from cozy apartments to
@@ -36,13 +43,12 @@ export default async function ForSale() {
       <section>
         <div className="mx-auto max-w-7xl px-8 md:px-12 py-12">
           <div className="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:items-center">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
               alt="Sell your property"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="1000"
+              width={800}
+              height={1000}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="max-h-80 md:max-h-[80dvh] w-full object-cover"
             />
             <div className="p-8 lg:p-20 h-full flex flex-col items-center justify-center outline outline-base-200">
@@ -60,10 +66,7 @@ export default async function ForSale() {
                   </p>
                 </div>
                 <div className="flex mt-8 gap-2">
-                  <Link
-                    className="flex transition text-center justify-center font-medium items-center duration-500 ease-in-out transition-colors focus:outline-2 outline-offset-4 text-white bg-base-800 hover:bg-base-900 focus:outline-base-900 h-15 px-8 py-4 text-base"
-                    href="/sell-property"
-                  >
+                  <Link className="btn-primary" href="/sell-property">
                     Sell your property
                   </Link>
                 </div>
