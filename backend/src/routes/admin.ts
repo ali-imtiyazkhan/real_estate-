@@ -1,4 +1,5 @@
 import { Router } from "express";
+import multer from "multer";
 import { requireAdmin } from "../middleware/auth";
 import {
   adminLogin,
@@ -9,6 +10,27 @@ import {
   listInquiries,
   updateProperty,
 } from "../controllers/admin.controller";
+import { uploadImageFile } from "../controllers/upload.controller";
+
+const ALLOWED_MIME_TYPES = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "image/avif",
+]);
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024, files: 1 },
+  fileFilter: (_req, file, cb) => {
+    if (!ALLOWED_MIME_TYPES.has(file.mimetype)) {
+      cb(new Error("Unsupported file type. Allowed: jpg, png, webp, gif, avif"));
+      return;
+    }
+    cb(null, true);
+  },
+});
 
 const router = Router();
 
@@ -22,6 +44,19 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.use(requireAdmin);
+
+router.post("/upload", upload.single("file"), async (req, res, next) => {
+  try {
+    const { status, body } = await uploadImageFile(req);
+    res.status(status).json(body);
+  } catch (err) {
+    if (err instanceof multer.MulterError || (err instanceof Error && err.message.startsWith("Unsupported file type"))) {
+      res.status(400).json({ error: { message: err.message } });
+      return;
+    }
+    next(err);
+  }
+});
 
 router.get("/inquiries", async (req, res, next) => {
   try {

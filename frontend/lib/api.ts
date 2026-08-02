@@ -80,13 +80,19 @@ interface RequestOptions {
 }
 
 async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
+  const isFormData = typeof FormData !== "undefined" && options.body instanceof FormData;
   const res = await fetch(`${API_URL}${path}`, {
     method: options.method ?? "GET",
     headers: {
-      "Content-Type": "application/json",
+      ...(isFormData ? {} : { "Content-Type": "application/json" }),
       ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
     },
-    body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
+    body:
+      options.body === undefined
+        ? undefined
+        : isFormData
+          ? (options.body as FormData)
+          : JSON.stringify(options.body),
   });
 
   if (!res.ok) {
@@ -166,4 +172,13 @@ export function updateAdminProperty(
 
 export function deleteAdminProperty(token: string, id: string): Promise<void> {
   return request(`/admin/properties/${id}`, { method: "DELETE", token });
+}
+
+export function uploadAdminImage(
+  token: string,
+  file: File
+): Promise<{ data: { url: string; key: string } }> {
+  const formData = new FormData();
+  formData.append("file", file);
+  return request("/admin/upload", { method: "POST", body: formData, token });
 }

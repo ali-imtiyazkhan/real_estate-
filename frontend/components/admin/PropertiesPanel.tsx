@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   createAdminProperty,
   deleteAdminProperty,
   getProperties,
   updateAdminProperty,
+  uploadAdminImage,
   type Property,
   type PropertyInput,
 } from "@/lib/api";
@@ -95,6 +96,7 @@ export default function PropertiesPanel({ token }: { token: string }) {
 
       {(creating || editing) && (
         <PropertyForm
+          token={token}
           initial={editing ?? emptyForm}
           isEditing={Boolean(editing)}
           onCancel={() => {
@@ -155,11 +157,13 @@ const inputClass =
   "block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400";
 
 function PropertyForm({
+  token,
   initial,
   isEditing,
   onCancel,
   onSave,
 }: {
+  token: string;
   initial: PropertyInput;
   isEditing: boolean;
   onCancel: () => void;
@@ -205,7 +209,19 @@ function PropertyForm({
         <Field label="Sqft" value={form.sqft} onChange={(v) => set("sqft", v)} required placeholder="12,500" />
         <Field label="Rooms" value={form.rooms} onChange={(v) => set("rooms", v)} required />
         <Field label="Floor" value={form.floor} onChange={(v) => set("floor", v)} required />
-        <Field label="Image URL" value={form.image} onChange={(v) => set("image", v)} required />
+        <div className="sm:col-span-2">
+          <label className="block text-sm font-medium text-base-900 mb-2">Image</label>
+          <div className="flex gap-3 items-end">
+            <div className="flex-1">
+              <Field value={form.image} onChange={(v) => set("image", v)} required placeholder="https://... or upload" />
+            </div>
+            <ImageUploader
+              token={token}
+              label="Upload"
+              onUploaded={(url) => set("image", url)}
+            />
+          </div>
+        </div>
         <div>
           <label className="block text-sm font-medium text-base-900 mb-2">Listing type</label>
           <select
@@ -217,18 +233,41 @@ function PropertyForm({
             <option value="RENT">For Rent</option>
           </select>
         </div>
-        <Field label="Map URL (optional)" value={form.map ?? ""} onChange={(v) => set("map", v)} />
+        <div>
+          <label className="block text-sm font-medium text-base-900 mb-2">Map image (optional)</label>
+          <div className="flex gap-3 items-end">
+            <div className="flex-1">
+              <Field value={form.map ?? ""} onChange={(v) => set("map", v)} placeholder="https://... or upload" />
+            </div>
+            <ImageUploader
+              token={token}
+              label="Upload"
+              onUploaded={(url) => set("map", url)}
+            />
+          </div>
+        </div>
         <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-base-900 mb-2">
-            Gallery URLs (one per line)
+            Gallery (one URL per line)
           </label>
-          <textarea
-            value={galleryText}
-            onChange={(e) => setGalleryText(e.target.value)}
-            rows={3}
-            placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg"
-            className="block w-full border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black resize-vertical placeholder:text-base-400"
-          />
+          <div className="flex gap-3 items-end">
+            <div className="flex-1">
+              <textarea
+                value={galleryText}
+                onChange={(e) => setGalleryText(e.target.value)}
+                rows={3}
+                placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg"
+                className="block w-full border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black resize-vertical placeholder:text-base-400"
+              />
+            </div>
+            <ImageUploader
+              token={token}
+              label="Upload"
+              onUploaded={(url) =>
+                setGalleryText((prev) => (prev.trim() ? `${prev.trim()}\n${url}` : url))
+              }
+            />
+          </div>
         </div>
       </div>
       <div className="flex gap-3 mt-8">
@@ -258,7 +297,7 @@ function Field({
   required,
   placeholder,
 }: {
-  label: string;
+  label?: string;
   value: string;
   onChange: (v: string) => void;
   required?: boolean;
@@ -266,7 +305,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-base-900 mb-2">{label}</label>
+      {label && <label className="block text-sm font-medium text-base-900 mb-2">{label}</label>}
       <input
         type="text"
         value={value}
@@ -275,6 +314,56 @@ function Field({
         placeholder={placeholder}
         className={inputClass}
       />
+    </div>
+  );
+}
+
+function ImageUploader({
+  token,
+  label,
+  onUploaded,
+}: {
+  token: string;
+  label: string;
+  onUploaded: (url: string) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleFile(file: File | undefined) {
+    if (!file) return;
+    setUploading(true);
+    setError("");
+    try {
+      const res = await uploadAdminImage(token, file);
+      onUploaded(res.data.url);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setUploading(false);
+      if (inputRef.current) inputRef.current.value = "";
+    }
+  }
+
+  return (
+    <div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+        className="hidden"
+        onChange={(e) => handleFile(e.target.files?.[0])}
+      />
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        disabled={uploading}
+        className="btn-outline !px-4 !py-3 text-sm cursor-pointer whitespace-nowrap disabled:opacity-50"
+      >
+        {uploading ? "Uploading..." : label}
+      </button>
+      {error && <p className="text-xs text-red-600 mt-1">{error}</p>}
     </div>
   );
 }

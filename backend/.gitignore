@@ -6,6 +6,9 @@ out
 dist
 *.tgz
 
+# uploaded files (local storage fallback)
+uploads
+
 # code coverage
 coverage
 *.lcov
