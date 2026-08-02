@@ -367,7 +367,7 @@ function ImageUploader({
       <input
         ref={inputRef}
         type="file"
-        accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+        accept="image/jpeg,image/png,image/webp,image/gif,image/avif,video/mp4,video/webm,video/quicktime,video/ogg"
         className="hidden"
         onChange={(e) => handleFile(e.target.files?.[0])}
       />

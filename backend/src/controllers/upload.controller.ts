@@ -1,6 +1,6 @@
 import type { Request } from "express";
 import { extname } from "node:path";
-import { uploadImage } from "../lib/cloudflare";
+import { uploadFile } from "../lib/cloudflare";
 
 const MIME_EXTENSIONS: Record<string, string> = {
   "image/jpeg": ".jpg",
@@ -8,9 +8,13 @@ const MIME_EXTENSIONS: Record<string, string> = {
   "image/webp": ".webp",
   "image/gif": ".gif",
   "image/avif": ".avif",
+  "video/mp4": ".mp4",
+  "video/webm": ".webm",
+  "video/quicktime": ".mov",
+  "video/ogg": ".ogv",
 };
 
-export async function uploadImageFile(req: Request) {
+export async function uploadFileController(req: Request) {
   const file = req.file;
 
   if (!file) {
@@ -19,7 +23,7 @@ export async function uploadImageFile(req: Request) {
 
   const extension = (MIME_EXTENSIONS[file.mimetype] ?? extname(file.originalname).toLowerCase()) || ".bin";
 
-  const { url, key } = await uploadImage({
+  const { url, key } = await uploadFile({
     buffer: file.buffer,
     contentType: file.mimetype,
     extension,

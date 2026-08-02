@@ -46,4 +46,4 @@ npm run lint     # eslint
 
 The admin panel is at `/admin`. Set `ADMIN_PASSWORD` in the backend's `.env` (see backend README).
 
-Image uploads use Cloudflare R2 (free tier) through `POST /api/admin/upload`; if R2 isn't configured the backend stores files locally. Images served from the API host (e.g. `http://localhost:3001`) must be allowed in `next.config.ts` → `images.remotePatterns`.
+Image/video uploads use **Supabase Storage** (free tier, persistent) through `POST /api/admin/upload`; it falls back to Cloudflare R2, then local disk if neither is configured. Files served from the API host (e.g. `http://localhost:3001`) must be allowed in `next.config.ts` → `images.remotePatterns`.

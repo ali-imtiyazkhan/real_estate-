@@ -77,8 +77,16 @@ export default function InquiriesPanel({ token }: { token: string }) {
       <div className="border-t border-base-200 divide-y divide-base-200">
         {inquiries.map((inq) => (
           <div key={inq.id} className="py-4">
-            <button
+            <div
               onClick={() => setExpandedId(expandedId === inq.id ? null : inq.id)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setExpandedId(expandedId === inq.id ? null : inq.id);
+                }
+              }}
               className="w-full flex items-center justify-between gap-4 text-left cursor-pointer"
             >
               <div>
@@ -109,7 +117,7 @@ export default function InquiriesPanel({ token }: { token: string }) {
                   Delete
                 </button>
               </div>
-            </button>
+            </div>
 
             {expandedId === inq.id && (
               <dl className="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-sm bg-base-50 p-6">

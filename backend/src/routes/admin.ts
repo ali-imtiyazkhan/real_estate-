@@ -10,7 +10,7 @@ import {
   listInquiries,
   updateProperty,
 } from "../controllers/admin.controller";
-import { uploadImageFile } from "../controllers/upload.controller";
+import { uploadFileController } from "../controllers/upload.controller";
 
 const ALLOWED_MIME_TYPES = new Set([
   "image/jpeg",
@@ -18,14 +18,18 @@ const ALLOWED_MIME_TYPES = new Set([
   "image/webp",
   "image/gif",
   "image/avif",
+  "video/mp4",
+  "video/webm",
+  "video/quicktime",
+  "video/ogg",
 ]);
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024, files: 1 },
+  limits: { fileSize: 50 * 1024 * 1024, files: 1 },
   fileFilter: (_req, file, cb) => {
     if (!ALLOWED_MIME_TYPES.has(file.mimetype)) {
-      cb(new Error("Unsupported file type. Allowed: jpg, png, webp, gif, avif"));
+      cb(new Error("Unsupported file type. Allowed: jpg, png, webp, gif, avif, mp4, webm, mov, ogv"));
       return;
     }
     cb(null, true);
@@ -47,7 +51,7 @@ router.use(requireAdmin);
 
 router.post("/upload", upload.single("file"), async (req, res, next) => {
   try {
-    const { status, body } = await uploadImageFile(req);
+    const { status, body } = await uploadFileController(req);
     res.status(status).json(body);
   } catch (err) {
     if (err instanceof multer.MulterError || (err instanceof Error && err.message.startsWith("Unsupported file type"))) {
