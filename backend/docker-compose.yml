@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: quartiere-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: quartiere
+      POSTGRES_PASSWORD: quartiere
+      POSTGRES_DB: quartiere
+    ports:
+      - "5433:5432"
+    volumes:
+      - quartiere-pgdata:/var/lib/postgresql/data
+
+volumes:
+  quartiere-pgdata:

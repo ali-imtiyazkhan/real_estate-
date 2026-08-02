@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  runtime  = "bun"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ListingType {
+  SALE
+  RENT
+}
+
+enum InquiryKind {
+  CONTACT
+  SELL
+  AGENT
+}
+
+model Property {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  title       String
+  projectName String
+  address     String
+  location    String
+  sqft        String
+  floor       String
+  rooms       String
+  price       String
+  image       String
+  gallery     String[]
+  map         String?
+  listingType ListingType @default(SALE)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  inquiries Inquiry[]
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String
+  date        String
+  createdAt   DateTime @default(now())
+}
+
+model Feature {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+}
+
+model Inquiry {
+  id          String      @id @default(cuid())
+  kind        InquiryKind
+  firstName   String?
+  lastName    String?
+  email       String?
+  phone       String?
+  country     String?
+  state       String?
+  city        String?
+  date        String?
+  concernType String?
+  office      String?
+  description String?
+  totalCost   String?
+  propertyId  String?
+  property    Property?   @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  createdAt   DateTime    @default(now())
+
+  @@index([kind])
+  @@index([propertyId])
+}
