@@ -129,30 +129,6 @@ export default function Header() {
                       <li><Link href="/contact" className="hover:text-base-900 py-1 inline-block transition-colors">Contact us</Link></li>
                     </ul>
                   </div>
-                  <div className="hidden xl:block xl:col-span-2 xl:pr-8">
-                    <h2 className="section-label">From the blog</h2>
-                    <ul className="list-none text-base-500 mt-4 text-base space-y-1 list-inside">
-                      <Link href="/blog" title="The importance of a dedicated IP address for your website" className="text-xs 2xl:text-sm flex flex-col gap-4 items-center group/blog">
-                        <div className="overflow-hidden w-full">
-                          <img
-                            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&q=80"
-                            alt="Blog post"
-                            loading="lazy"
-                            decoding="async"
-                            width="400"
-                            height="400"
-                            className="aspect-[16/7] object-cover object-center group-hover/blog:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                        <div className="w-full divide-y">
-                          <div className="gap-4 mt-2">
-                            <h3 className="text-base text-base-900">The importance of a dedicated IP address for your website</h3>
-                            <p className="text-sm text-base-500 mt-4 line-clamp-2">Highlighting the advantages of having a dedicated IP address for your website, including enhanced security and improved email deliverability</p>
-                          </div>
-                        </div>
-                      </Link>
-                    </ul>
-                  </div>
                 </div>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:col-span-2 xl:pl-8">
                   <div className="grid grid-cols-1 gap-8 2xl:grid-cols-2">

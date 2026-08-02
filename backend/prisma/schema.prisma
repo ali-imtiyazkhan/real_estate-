@@ -40,15 +40,6 @@ model Property {
   inquiries Inquiry[]
 }
 
-model BlogPost {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  image       String
-  date        String
-  createdAt   DateTime @default(now())
-}
-
 model Feature {
   id          String   @id @default(cuid())
   title       String

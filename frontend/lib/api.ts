@@ -23,15 +23,6 @@ export interface Property {
   updatedAt: string;
 }
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  date: string;
-  createdAt: string;
-}
-
 export interface Feature {
   id: string;
   title: string;
@@ -126,10 +117,6 @@ export function getProperties(params?: {
 
 export function getProperty(idOrSlug: string): Promise<{ data: Property }> {
   return request(`/properties/${encodeURIComponent(idOrSlug)}`);
-}
-
-export function getBlogPosts(): Promise<{ data: BlogPost[] }> {
-  return request("/blog");
 }
 
 export function getFeatures(): Promise<{ data: Feature[] }> {
