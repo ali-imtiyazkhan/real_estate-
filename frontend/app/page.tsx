@@ -1,8 +1,15 @@
 import Link from "next/link";
 import PropertyCard from "@/components/PropertyCard";
-import { features, properties } from "@/lib/data";
+import { getFeatures, getProperties } from "@/lib/api";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const [saleProps, features] = await Promise.all([
+    getProperties({ type: "sale", limit: 6 }),
+    getFeatures(),
+  ]);
+
   return (
     <>
       <section className="overflow-hidden">
@@ -47,8 +54,8 @@ export default function Home() {
               Why choose us
             </h2>
             <div className="lg:col-span-2 grid lg:grid-cols-2 lg:col-start-2 gap-8">
-              {features.map((f) => (
-                <div key={f.title} className="flex flex-col">
+              {features.data.map((f) => (
+                <div key={f.id} className="flex flex-col">
                   <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-base-900">
                     {f.title}
                   </h3>
@@ -87,7 +94,7 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 border-t border-base-200 pt-8 lg:grid-cols-3 gap-8 mt-8 group/props duration-500">
-            {properties.map((p) => (
+            {saleProps.data.map((p) => (
               <PropertyCard key={p.id} {...p} />
             ))}
           </div>

@@ -11,6 +11,8 @@ const envSchema = z.object({
   R2_PUBLIC_URL: z.string().optional().default(""),
   CF_IMAGES_ACCOUNT_ID: z.string().optional().default(""),
   CF_IMAGES_API_TOKEN: z.string().optional().default(""),
+  ADMIN_PASSWORD: z.string().optional().default("admin123"),
+  ADMIN_SECRET: z.string().optional().default("change-me-in-production"),
 });
 
 const parsed = envSchema.safeParse(process.env);

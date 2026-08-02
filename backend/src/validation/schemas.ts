@@ -10,7 +10,7 @@ export const listPropertiesQuery = z.object({
 export const createInquirySchema = z
   .object({
     kind: z.enum(["CONTACT", "SELL", "AGENT"]),
-    firstName: z.string().trim().max(100),
+    firstName: z.string().trim().max(100).optional(),
     lastName: z.string().trim().max(100).optional(),
     name: z.string().trim().max(200).optional(),
     email: z.string().trim().email().max(255),
@@ -34,6 +34,10 @@ export const createInquirySchema = z
       requireField("name", "Name is required");
     }
 
+    if (data.kind !== "AGENT" && !data.firstName) {
+      requireField("firstName", "First name is required");
+    }
+
     if (data.kind !== "AGENT" && !data.lastName) {
       requireField("lastName", "Last name is required");
     }
@@ -48,3 +52,31 @@ export const createInquirySchema = z
   });
 
 export type CreateInquiryInput = z.infer<typeof createInquirySchema>;
+
+export const adminLoginSchema = z.object({
+  password: z.string().min(1).max(200),
+});
+
+export const listInquiriesQuery = z.object({
+  kind: z.enum(["CONTACT", "SELL", "AGENT"]).optional(),
+  limit: z.coerce.number().int().min(1).max(100).default(50),
+  offset: z.coerce.number().int().min(0).default(0),
+});
+
+export const propertyUpsertSchema = z.object({
+  slug: z.string().trim().min(1).max(200),
+  title: z.string().trim().min(1).max(300),
+  projectName: z.string().trim().min(1).max(300),
+  address: z.string().trim().min(1).max(300),
+  location: z.string().trim().min(1).max(200),
+  sqft: z.string().trim().min(1).max(50),
+  floor: z.string().trim().min(1).max(50),
+  rooms: z.string().trim().min(1).max(50),
+  price: z.string().trim().min(1).max(100),
+  image: z.string().trim().min(1).max(1000),
+  gallery: z.array(z.string().trim().min(1).max(1000)).max(20).default([]),
+  map: z.string().trim().max(1000).nullable().optional(),
+  listingType: z.enum(["SALE", "RENT"]),
+});
+
+export type PropertyUpsertInput = z.infer<typeof propertyUpsertSchema>;

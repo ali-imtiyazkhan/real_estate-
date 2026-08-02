@@ -5,6 +5,7 @@ import propertiesRouter from "./routes/properties";
 import blogRouter from "./routes/blog";
 import featuresRouter from "./routes/features";
 import inquiriesRouter from "./routes/inquiries";
+import adminRouter from "./routes/admin";
 
 export const app = express();
 
@@ -19,6 +20,7 @@ app.use("/api/properties", propertiesRouter);
 app.use("/api/blog", blogRouter);
 app.use("/api/features", featuresRouter);
 app.use("/api/inquiries", inquiriesRouter);
+app.use("/api/admin", adminRouter);
 
 app.use(notFound);
 app.use(errorHandler);

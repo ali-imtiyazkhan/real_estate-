@@ -1,9 +1,13 @@
 import Link from "next/link";
 import PropertyCard from "@/components/PropertyCard";
 import SearchModal from "@/components/SearchModal";
-import { properties } from "@/lib/data";
+import { getProperties } from "@/lib/api";
 
-export default function ForSale() {
+export const dynamic = "force-dynamic";
+
+export default async function ForSale() {
+  const { data: properties } = await getProperties({ type: "sale", limit: 50 });
+
   return (
     <>
       <section className="overflow-hidden">

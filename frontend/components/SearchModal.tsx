@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 
 interface SearchResult {
   id: string;
+  slug?: string;
   title?: string;
   projectName?: string;
   name?: string;
@@ -124,7 +125,7 @@ export default function SearchModal({ results, searchKeys }: SearchModalProps) {
                 {filtered.map((r) => (
                   <a
                     key={r.id}
-                    href={`/property/${r.id}`}
+                    href={`/property/${r.slug ?? r.id}`}
                     className="block p-6 md:p-8 duration-300 hover:bg-base-100 border-t border-base-200 first:border-t-0 gap-2 transition-colors"
                   >
                     <h3 className="font-medium text-base text-base-900 block">

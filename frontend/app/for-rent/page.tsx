@@ -1,8 +1,11 @@
-import Link from "next/link";
 import PropertyCard from "@/components/PropertyCard";
-import { rentalProperties } from "@/lib/data";
+import { getProperties } from "@/lib/api";
 
-export default function ForRent() {
+export const dynamic = "force-dynamic";
+
+export default async function ForRent() {
+  const { data: rentalProperties } = await getProperties({ type: "rent", limit: 50 });
+
   return (
     <section className="overflow-hidden">
       <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12 lg:pt-32">

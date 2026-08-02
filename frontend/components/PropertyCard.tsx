@@ -2,6 +2,7 @@ import Link from "next/link";
 
 interface PropertyCardProps {
   id: string;
+  slug?: string;
   title: string;
   projectName: string;
   address: string;
@@ -16,6 +17,7 @@ interface PropertyCardProps {
 
 export default function PropertyCard({
   id,
+  slug,
   title,
   projectName,
   address,
@@ -28,7 +30,7 @@ export default function PropertyCard({
 }: PropertyCardProps) {
   return (
     <Link
-      href={`/property/${id}`}
+      href={`/property/${slug ?? id}`}
       title={title}
       className="text-xs 2xl:text-sm duration-300 hover:!opacity-100 transition-all group-hover/props:opacity-40 focus-visible:!opacity-100 rounded-sm outline-offset-4"
     >

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { properties, rentalProperties } from "@/lib/data";
+import AgentForm from "@/components/AgentForm";
+import { getProperties, getProperty } from "@/lib/api";
+
+export const dynamic = "force-dynamic";
 
 export default async function PropertyDetail({
   params,
@@ -8,8 +11,7 @@ export default async function PropertyDetail({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const allProps = [...properties, ...rentalProperties];
-  const prop = allProps.find((p) => p.id === id);
+  const { data: prop } = await getProperty(id).catch(() => ({ data: null }));
 
   if (!prop) notFound();
 
@@ -21,6 +23,15 @@ export default async function PropertyDetail({
           "https://images.unsplash.com/photo-1600566753086-00f18d8f5b4a?w=400&q=80",
           "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=400&q=80",
         ];
+
+  const related = (
+    await getProperties({
+      type: prop.listingType === "SALE" ? "sale" : "rent",
+      limit: 50,
+    }).catch(() => ({ data: [] }))
+  ).data
+    .filter((p) => p.id !== prop.id)
+    .slice(0, 3);
 
   return (
     <>
@@ -93,26 +104,7 @@ export default async function PropertyDetail({
                 <p className="text-sm text-base-500">{prop.location}</p>
                 <div className="mt-6 pt-6 border-t border-base-200">
                   <h4 className="text-base font-medium text-base-900">Contact Agent</h4>
-                  <div className="mt-4 space-y-4">
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                    />
-                    <textarea
-                      placeholder="Your Message"
-                      rows={3}
-                      className="block w-full border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black resize-vertical placeholder:text-base-400"
-                    />
-                    <button className="w-full h-15 bg-base-800 text-white text-base font-medium hover:bg-base-900 transition-colors cursor-pointer">
-                      Send Message
-                    </button>
-                  </div>
+                  <AgentForm propertyId={prop.id} />
                 </div>
               </div>
             </div>
@@ -127,8 +119,8 @@ export default async function PropertyDetail({
               Related properties
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {allProps.filter((p) => p.id !== id).slice(0, 3).map((p) => (
-                <Link key={p.id} href={`/property/${p.id}`} className="group">
+              {related.map((p) => (
+                <Link key={p.id} href={`/property/${p.slug}`} className="group">
                   <div className="overflow-hidden">
                     <img
                       src={p.image}

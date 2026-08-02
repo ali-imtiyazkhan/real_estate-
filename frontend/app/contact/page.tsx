@@ -1,3 +1,5 @@
+import ContactForm from "@/components/ContactForm";
+
 export default function Contact() {
   return (
     <section className="overflow-hidden">
@@ -27,103 +29,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="lg:col-span-2">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">First name</label>
-                <input
-                  type="text"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                  placeholder="John"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">Last name</label>
-                <input
-                  type="text"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                  placeholder="Doe"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">Email</label>
-                <input
-                  type="email"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                  placeholder="john@example.com"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">Phone</label>
-                <input
-                  type="tel"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                  placeholder="(202) 555-0123"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">Country</label>
-                <input
-                  type="text"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                  placeholder="United States"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">State</label>
-                <input
-                  type="text"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                  placeholder="California"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">City</label>
-                <input
-                  type="text"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                  placeholder="Los Angeles"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">Date</label>
-                <input
-                  type="date"
-                  className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                />
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">Concern type</label>
-                <select className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black appearance-none">
-                  <option>General Inquiry</option>
-                  <option>Buying</option>
-                  <option>Selling</option>
-                  <option>Renting</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xl font-medium text-base-900 mb-2">Office</label>
-                <select className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black appearance-none">
-                  <option>Fair Deal Property</option>
-                  <option>Fair Deal Property - New York</option>
-                  <option>Fair Deal Property - London</option>
-                  <option>Fair Deal Property - Dubai</option>
-                </select>
-              </div>
-            </div>
-            <div className="mt-8">
-              <label className="block text-xl font-medium text-base-900 mb-2">Description</label>
-              <textarea
-                rows={4}
-                className="block w-full border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black resize-vertical placeholder:text-base-400"
-                placeholder="Tell us about your inquiry..."
-              />
-            </div>
-            <div className="mt-8">
-              <button className="h-15 px-8 py-4 text-base bg-base-800 text-white font-medium hover:bg-base-900 transition-colors cursor-pointer">
-                Submit
-              </button>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </div>

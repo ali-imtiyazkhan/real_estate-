@@ -1,4 +1,4 @@
-import Link from "next/link";
+import SellForm from "@/components/SellForm";
 
 export default function SellProperty() {
   return (
@@ -168,45 +168,7 @@ export default function SellProperty() {
               Contact us about selling your property
             </h2>
             <div className="lg:col-span-2 lg:col-start-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div>
-                  <label className="block text-xl font-medium text-base-900 mb-2">First name</label>
-                  <input
-                    type="text"
-                    className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                    placeholder="John"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xl font-medium text-base-900 mb-2">Last name</label>
-                  <input
-                    type="text"
-                    className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                    placeholder="Doe"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xl font-medium text-base-900 mb-2">Total cost</label>
-                  <input
-                    type="text"
-                    className="block w-full h-12 border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black focus:shadow-[inset_0_-2px_0_#000] placeholder:text-base-400"
-                    placeholder="$"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xl font-medium text-base-900 mb-2">Message</label>
-                  <textarea
-                    rows={3}
-                    className="block w-full border-0 border-b border-base-200 text-sm text-base-900 bg-transparent outline-none focus:border-black resize-vertical placeholder:text-base-400"
-                    placeholder="Tell us about your property..."
-                  />
-                </div>
-              </div>
-              <div className="mt-8">
-                <button className="h-15 px-8 py-4 text-base bg-base-800 text-white font-medium hover:bg-base-900 transition-colors cursor-pointer">
-                  Submit
-                </button>
-              </div>
+              <SellForm />
             </div>
           </div>
         </div>

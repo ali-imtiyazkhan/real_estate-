@@ -1,30 +1,11 @@
 import Link from "next/link";
+import { getBlogPosts } from "@/lib/api";
 
-const blogPosts = [
-  {
-    id: "1",
-    title: "The importance of a dedicated IP address for your website",
-    description: "Highlighting the advantages of having a dedicated IP address for your website, including enhanced security and improved email deliverability",
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80",
-    date: "March 15, 2026",
-  },
-  {
-    id: "2",
-    title: "Top 10 luxury real estate markets to watch in 2026",
-    description: "Discover which global luxury real estate markets are poised for growth and investment opportunities in the coming year.",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-    date: "March 10, 2026",
-  },
-  {
-    id: "3",
-    title: "How to stage your home for a quick sale",
-    description: "Expert tips and strategies for preparing your property to attract qualified buyers and achieve the best possible price.",
-    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
-    date: "March 5, 2026",
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function Blog() {
+export default async function Blog() {
+  const { data: blogPosts } = await getBlogPosts();
+
   return (
     <section className="overflow-hidden">
       <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12 lg:pt-32">
