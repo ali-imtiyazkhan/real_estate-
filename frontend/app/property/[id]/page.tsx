@@ -10,7 +10,8 @@ export default async function PropertyDetail({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const id = decodeURIComponent(rawId);
   const { data: prop } = await getProperty(id).catch(() => ({ data: null }));
 
   if (!prop) notFound();

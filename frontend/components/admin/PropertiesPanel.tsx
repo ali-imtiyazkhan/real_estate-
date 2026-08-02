@@ -201,7 +201,21 @@ function PropertyForm({
       </h3>
       <div className="grid sm:grid-cols-2 gap-6">
         <Field label="Title" value={form.title} onChange={(v) => set("title", v)} required />
-        <Field label="Slug" value={form.slug} onChange={(v) => set("slug", v)} required placeholder="e.g. sunset-villa" />
+        <Field
+          label="Slug"
+          value={form.slug}
+          onChange={(v) =>
+            set(
+              "slug",
+              v
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "")
+            )
+          }
+          required
+          placeholder="e.g. sunset-villa"
+        />
         <Field label="Project name" value={form.projectName} onChange={(v) => set("projectName", v)} required />
         <Field label="Address" value={form.address} onChange={(v) => set("address", v)} required />
         <Field label="Location" value={form.location} onChange={(v) => set("location", v)} required />
