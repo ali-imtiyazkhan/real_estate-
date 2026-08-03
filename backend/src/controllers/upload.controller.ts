@@ -12,6 +12,7 @@ const MIME_EXTENSIONS: Record<string, string> = {
   "video/webm": ".webm",
   "video/quicktime": ".mov",
   "video/ogg": ".ogv",
+  "application/pdf": ".pdf",
 };
 
 export async function uploadFileController(req: Request) {

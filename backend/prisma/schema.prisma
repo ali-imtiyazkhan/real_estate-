@@ -33,6 +33,7 @@ model Property {
   image       String
   gallery     String[]
   map         String?
+  brochure    String?
   listingType ListingType @default(SALE)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt

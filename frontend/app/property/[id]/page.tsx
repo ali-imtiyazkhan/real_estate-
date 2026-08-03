@@ -142,6 +142,31 @@ export default async function PropertyDetail({
                 <ImageLightbox images={gallery} title={prop.title} />
               </div>
 
+              {/* PDF Brochure Section (optional per property) */}
+              {prop.brochure && (
+                <div className="mt-10 p-6 bg-base-50 border border-base-200 rounded-xl">
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-base-900">
+                        Property Brochure (PDF)
+                      </h3>
+                      <p className="text-xs text-base-500">
+                        Download the detailed brochure with pricing, specifications, and layout.
+                      </p>
+                    </div>
+                    <a
+                      href={prop.brochure}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-base-900 text-white text-sm font-medium rounded-lg hover:bg-base-800 transition-colors shadow-sm"
+                    >
+                      Download PDF Brochure
+                    </a>
+                  </div>
+                </div>
+              )}
+
               {/* Layout Map Section */}
               {prop.map && (
                 <div className="mt-10 p-6 bg-base-50 border border-base-200 rounded-xl">

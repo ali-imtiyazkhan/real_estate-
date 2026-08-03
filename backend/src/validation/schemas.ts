@@ -76,6 +76,7 @@ export const propertyUpsertSchema = z.object({
   image: z.string().trim().min(1).max(1000),
   gallery: z.array(z.string().trim().min(1).max(1000)).max(20).default([]),
   map: z.string().trim().max(1000).nullable().optional(),
+  brochure: z.string().trim().max(1000).nullable().optional(),
   listingType: z.enum(["SALE", "RENT"]),
 });
 

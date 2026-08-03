@@ -25,6 +25,7 @@ const emptyForm: PropertyInput = {
   image: "",
   gallery: [],
   map: "",
+  brochure: "",
   listingType: "SALE",
 };
 
@@ -189,6 +190,7 @@ function PropertyForm({
         .map((s) => s.trim())
         .filter(Boolean),
       map: form.map?.trim() ? form.map.trim() : null,
+      brochure: form.brochure?.trim() ? form.brochure.trim() : null,
     });
     setSaving(false);
   }
@@ -259,6 +261,24 @@ function PropertyForm({
               token={token}
               label="Upload"
               onUploaded={(url) => set("map", url)}
+            />
+          </div>
+        </div>
+        <div className="sm:col-span-2">
+          <label className="block text-sm font-medium text-base-900 mb-2">
+            Brochure PDF (optional)
+          </label>
+          <p className="text-xs text-base-500 mb-2">
+            Upload a brochure PDF or paste a URL. A download section will appear on the property page.
+          </p>
+          <div className="flex gap-3 items-end">
+            <div className="flex-1">
+              <Field value={form.brochure ?? ""} onChange={(v) => set("brochure", v)} placeholder="https://.../brochure.pdf or upload" />
+            </div>
+            <ImageUploader
+              token={token}
+              label="Upload PDF"
+              onUploaded={(url) => set("brochure", url)}
             />
           </div>
         </div>
@@ -367,7 +387,7 @@ function ImageUploader({
       <input
         ref={inputRef}
         type="file"
-        accept="image/jpeg,image/png,image/webp,image/gif,image/avif,video/mp4,video/webm,video/quicktime,video/ogg"
+        accept="image/jpeg,image/png,image/webp,image/gif,image/avif,video/mp4,video/webm,video/quicktime,video/ogg,application/pdf"
         className="hidden"
         onChange={(e) => handleFile(e.target.files?.[0])}
       />

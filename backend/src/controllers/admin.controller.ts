@@ -98,6 +98,7 @@ export async function createProperty(body: unknown) {
     data: {
       ...input,
       map: input.map ?? null,
+      brochure: input.brochure ?? null,
     },
   });
 
@@ -133,7 +134,7 @@ export async function updateProperty(id: string, body: unknown) {
 
   const prop = await prisma.property.update({
     where: { id },
-    data: { ...input, map: input.map ?? null },
+    data: { ...input, map: input.map ?? null, brochure: input.brochure ?? null },
   });
 
   return { status: 200 as const, body: { data: prop } };

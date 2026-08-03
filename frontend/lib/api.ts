@@ -18,6 +18,7 @@ export interface Property {
   image: string;
   gallery: string[];
   map: string | null;
+  brochure: string | null;
   listingType: ListingType;
   createdAt: string;
   updatedAt: string;
@@ -70,6 +71,7 @@ export interface PropertyInput {
   image: string;
   gallery: string[];
   map?: string | null;
+  brochure?: string | null;
   listingType: ListingType;
 }
 
