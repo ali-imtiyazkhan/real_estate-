@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "http", hostname: "localhost", port: "3001" },
       { protocol: "https", hostname: "*.supabase.co" },
+      { protocol: "https", hostname: "*.onrender.com" },
     ],
   },
 };
