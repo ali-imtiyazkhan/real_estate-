@@ -2,6 +2,7 @@ services:
   - type: web
     name: quartiere-backend
     env: docker
+    plan: free
     rootDir: backend
     dockerfilePath: Dockerfile
     healthCheckPath: /api/health
