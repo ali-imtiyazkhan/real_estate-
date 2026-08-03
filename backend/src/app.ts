@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/uploads", express.static(LOCAL_UPLOADS_DIR));
 
 app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok" });
+  res.json({ status: "ok" })
 });
 
 app.use("/api/properties", propertiesRouter);
