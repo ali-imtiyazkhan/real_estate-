@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import AgentForm from "@/components/AgentForm";
 import MapDownloadButton from "@/components/MapDownloadButton";
 import ImageLightbox from "@/components/ImageLightbox";
-import MortgageCalculator from "@/components/MortgageCalculator";
 import { getProperties, getProperty } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
@@ -167,9 +166,6 @@ export default async function PropertyDetail({
                   </div>
                 </div>
               )}
-
-              {/* Mortgage Calculator */}
-              <MortgageCalculator propertyPriceRaw={prop.price} />
             </div>
 
             {/* Sidebar Contact Card */}
