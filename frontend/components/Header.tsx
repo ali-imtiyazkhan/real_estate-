@@ -78,11 +78,6 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center gap-4 lg:gap-6 ml-auto lg:ml-0">
-              <div className="hidden md:flex gap-4 text-base-900 uppercase text-xs font-medium tracking-wide">
-                <Link className="hover:text-base-500 transition-colors" href="/system/overview">
-                  Overview
-                </Link>
-              </div>
               <button
                 id="menubutton"
                 type="button"

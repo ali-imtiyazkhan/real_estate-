@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import PropertyCard from "@/components/PropertyCard";
 import SearchModal from "@/components/SearchModal";
+import QuickFilterBar from "@/components/QuickFilterBar";
 import { getProperties } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
@@ -13,14 +14,23 @@ export const metadata: Metadata = {
     "Browse homes for sale — from cozy apartments to spacious estates. Fair Deal Property, Govind Singh, +91 96100 16666.",
 };
 
-export default async function ForSale() {
-  const { data: properties } = await getProperties({ type: "sale", limit: 50 });
+export default async function ForSale({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { q } = await searchParams;
+  const { data: properties } = await getProperties({
+    type: "sale",
+    q: q || undefined,
+    limit: 50,
+  });
 
   return (
     <>
       <section className="overflow-hidden">
         <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12 lg:pt-32">
-          <div className="grid lg:grid-cols-3 gap-8 items-end">
+          <div className="grid lg:grid-cols-3 gap-8 items-end mb-8">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-balance font-medium tracking-tighter lg:col-span-2 text-base-900">
               Properties for sale
             </h1>
@@ -29,14 +39,21 @@ export default async function ForSale() {
               spacious estates, and discover the ideal property to call your own.
             </p>
           </div>
-          <div className="mt-8">
-            <SearchModal results={properties} searchKeys={["projectName", "address", "price"]} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 group/props duration-500">
-            {properties.map((p) => (
-              <PropertyCard key={p.id} {...p} />
-            ))}
-          </div>
+
+          <QuickFilterBar basePath="/for-sale" />
+
+          {properties.length === 0 ? (
+            <div className="py-16 text-center bg-base-50 rounded-xl border border-base-200">
+              <h3 className="text-xl font-semibold text-base-900">No properties found</h3>
+              <p className="text-sm text-base-500 mt-2">Try adjusting your search keywords or location.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 group/props duration-500">
+              {properties.map((p) => (
+                <PropertyCard key={p.id} {...p} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -78,3 +95,4 @@ export default async function ForSale() {
     </>
   );
 }
+
