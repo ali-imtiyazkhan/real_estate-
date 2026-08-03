@@ -117,8 +117,6 @@ export default function Header() {
                   <div className="md:col-span-2">
                     <h2 className="section-label">Navigation</h2>
                     <ul className="list-none text-base-500 mt-4 text-base gap-1 list-inside grid grid-cols-1 md:grid-cols-2 lg:col-span-2">
-                      <li><Link href="/system/overview" className="hover:text-base-900 py-1 inline-block transition-colors">Overview</Link></li>
-                      <li><Link href="/system/style-guide" className="hover:text-base-900 py-1 inline-block transition-colors">Style guide</Link></li>
                       <li><Link href="/for-sale" className="hover:text-base-900 py-1 inline-block transition-colors">Properties for sale</Link></li>
                       <li><Link href="/for-rent" className="hover:text-base-900 py-1 inline-block transition-colors">Properties for rent</Link></li>
                       <li><Link href="/sell-property" className="hover:text-base-900 py-1 inline-block transition-colors">Sell your property</Link></li>
