@@ -1,7 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { env } from "../config/env";
 
-const TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
+const TOKEN_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
 function sign(payload: string): string {
   return createHmac("sha256", env.ADMIN_SECRET).update(payload).digest("hex");
