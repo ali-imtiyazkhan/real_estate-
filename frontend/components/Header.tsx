@@ -78,6 +78,18 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center gap-4 lg:gap-6 ml-auto lg:ml-0">
+              <div className="hidden md:flex flex-col items-end leading-tight">
+                <span className="text-sm font-medium text-base-900">Mr. Govind Singh</span>
+                <a href="tel:+919610016666" className="text-xs text-base-600 hover:text-base-900 transition-colors">
+                  +91 9610016666
+                </a>
+              </div>
+              <Link
+                href="/admin"
+                className="px-4 py-2 rounded-sm bg-base-900 text-white text-xs font-medium uppercase tracking-wide transition-colors hover:bg-base-700"
+              >
+                Admin
+              </Link>
               <button
                 id="menubutton"
                 type="button"
