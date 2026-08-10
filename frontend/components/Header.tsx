@@ -53,9 +53,13 @@ export default function Header() {
               className="shrink-0 rounded-sm transition-opacity hover:opacity-70"
             >
               <span className="sr-only">Go to homepage</span>
-              <svg className="size-8 text-base-900" viewBox="0 0 135 117" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M135 87L84.7 58V0H50.2V58L0 87L17.2 116.9L67.4 87.9L117.7 116.9L135 87Z" fill="currentColor" />
-              </svg>
+              <Image
+                src="/logo.jpeg"
+                alt="Logo"
+                width={100}
+                height={40}
+                className="h-8 w-auto"
+              />
             </Link>
 
             <nav

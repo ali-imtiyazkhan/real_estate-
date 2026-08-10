@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     description: "Discover your dream home. Explore our real estate listings today.",
     type: "website",
   },
+  icons: {
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg",
+  },
 };
 
 export default function RootLayout({
