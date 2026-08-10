@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -25,9 +26,13 @@ export default function Footer() {
           <div>
             <Link href="/" aria-label="Fair Deal Property" className="inline-block rounded-sm hover:opacity-80 transition-opacity">
               <span className="sr-only">Fair Deal Property</span>
-              <svg className="size-9 text-white" viewBox="0 0 135 117" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M135 87L84.7 58V0H50.2V58L0 87L17.2 116.9L67.4 87.9L117.7 116.9L135 87Z" fill="currentColor" />
-              </svg>
+              <Image
+                src="/logo.jpeg"
+                alt="Fair Deal Property"
+                width={100}
+                height={40}
+                className="h-9 w-auto"
+              />
             </Link>
             <h2 className="text-4xl sm:text-5xl font-medium tracking-tight text-white leading-[1.05] mt-8">
               Find your next <span className="text-zinc-500">home.</span>
