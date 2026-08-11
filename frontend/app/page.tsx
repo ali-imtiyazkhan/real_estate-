@@ -52,7 +52,7 @@ export default async function Home() {
           </div>
           <div className="grid lg:grid-cols-3 pt-8 mt-8 border-t border-base-200">
             <div className="lg:col-span-3">
-              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-base-900 text-center lg:text-left">
+              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-base-900 text-center">
                 Fair Deal Property
               </h2>
             </div>
