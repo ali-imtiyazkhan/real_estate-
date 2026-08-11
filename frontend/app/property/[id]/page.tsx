@@ -60,7 +60,7 @@ export default async function PropertyDetail({
       limit: 50,
     }).catch(() => ({ data: [] }))
   ).data
-    .filter((p) => p.id !== prop.id)
+    .filter((p) => p.id !== prop.id && p.listingType !== "COMING_SOON")
     .slice(0, 3);
 
   const whatsappMessage = encodeURIComponent(
@@ -83,7 +83,11 @@ export default async function PropertyDetail({
               className="w-full h-[60vh] 2xl:h-[75vh] object-cover"
             />
             <div className="absolute top-4 left-4 bg-base-900/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-md">
-              {prop.listingType === "SALE" ? "FOR SALE" : "FOR RENT"}
+              {prop.listingType === "SALE"
+                ? "FOR SALE"
+                : prop.listingType === "RENT"
+                ? "FOR RENT"
+                : "COMING SOON"}
             </div>
           </div>
 
@@ -222,7 +226,7 @@ export default async function PropertyDetail({
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {related.map((p) => (
-                <Link key={p.id} href={`/property/${p.slug}`} className="group bg-white rounded-xl overflow-hidden border border-base-200 shadow-sm hover:shadow-md transition-all">
+                <Link key={p.id} href={`/property/${p.slug}`} className="group bg-white rounded-xl overflow-hidden border border-base-200 shadow-sm hover:shadow-md transition-all relative">
                   <div className="overflow-hidden aspect-[4/3] relative">
                     <Image
                       src={p.image}
@@ -231,6 +235,16 @@ export default async function PropertyDetail({
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    {p.listingType === "COMING_SOON" && (
+                      <div className="absolute top-3 left-3 z-10">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 text-white text-xs font-semibold uppercase tracking-wider rounded-full shadow-lg">
+                          <svg className="w-3 h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                          </svg>
+                          Coming Soon
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-5">
                     <h3 className="text-base font-semibold text-base-900 group-hover:text-black">{p.title}</h3>

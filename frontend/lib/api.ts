@@ -1,7 +1,7 @@
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
 
-export type ListingType = "SALE" | "RENT";
+export type ListingType = "SALE" | "RENT" | "COMING_SOON";
 export type InquiryKind = "CONTACT" | "SELL" | "AGENT";
 
 export interface Property {
@@ -109,7 +109,7 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
 }
 
 export function getProperties(params?: {
-  type?: "sale" | "rent";
+  type?: "sale" | "rent" | "coming-soon";
   q?: string;
   limit?: number;
   offset?: number;

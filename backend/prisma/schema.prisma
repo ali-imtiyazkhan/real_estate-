@@ -11,6 +11,7 @@ datasource db {
 enum ListingType {
   SALE
   RENT
+  COMING_SOON
 }
 
 enum InquiryKind {

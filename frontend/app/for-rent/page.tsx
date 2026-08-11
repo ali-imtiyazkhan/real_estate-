@@ -45,7 +45,7 @@ export default async function ForRent({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 border-t border-base-200 pt-8 group/props duration-500">
             {rentalProperties.map((p) => (
-              <PropertyCard key={p.id} {...p} />
+              <PropertyCard key={p.id} {...p} listingType={p.listingType} />
             ))}
           </div>
         )}

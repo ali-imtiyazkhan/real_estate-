@@ -14,7 +14,16 @@ export async function listProperties(query: unknown) {
   const { type, q, limit, offset } = parsed.data;
 
   const where = {
-    ...(type ? { listingType: type === "sale" ? ("SALE" as const) : ("RENT" as const) } : {}),
+    ...(type
+      ? {
+          listingType:
+            type === "sale"
+              ? ("SALE" as const)
+              : type === "rent"
+              ? ("RENT" as const)
+              : ("COMING_SOON" as const),
+        }
+      : {}),
     ...(q
       ? {
           OR: [

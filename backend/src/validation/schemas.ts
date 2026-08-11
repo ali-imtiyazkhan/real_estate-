@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const listPropertiesQuery = z.object({
-  type: z.enum(["sale", "rent"]).optional(),
+  type: z.enum(["sale", "rent", "coming-soon"]).optional(),
   q: z.string().trim().max(200).optional(),
   limit: z.coerce.number().int().min(1).max(50).default(12),
   offset: z.coerce.number().int().min(0).default(0),
@@ -77,7 +77,7 @@ export const propertyUpsertSchema = z.object({
   gallery: z.array(z.string().trim().min(1).max(1000)).max(20).default([]),
   map: z.string().trim().max(1000).nullable().optional(),
   brochure: z.string().trim().max(1000).nullable().optional(),
-  listingType: z.enum(["SALE", "RENT"]),
+  listingType: z.enum(["SALE", "RENT", "COMING_SOON"]),
 });
 
 export type PropertyUpsertInput = z.infer<typeof propertyUpsertSchema>;
