@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AgentForm from "@/components/AgentForm";
@@ -8,6 +9,90 @@ import ImageLightbox from "@/components/ImageLightbox";
 import { getProperties, getProperty } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
+
+function generatePropertySchema(prop: {
+  id: string;
+  slug: string;
+  title: string;
+  address: string;
+  location: string;
+  sqft: string;
+  rooms: string;
+  floor: string;
+  price: string;
+  image: string;
+  gallery: string[];
+  listingType: string;
+}) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const propertyUrl = `${siteUrl}/property/${prop.slug}`;
+
+  const priceValue = prop.price.replace(/[^0-9.]/g, "");
+  const sqftValue = prop.sqft.replace(/[^0-9.]/g, "");
+  const roomsValue = parseInt(prop.rooms.replace(/[^0-9]/g, ""), 10) || 1;
+
+  const availability =
+    prop.listingType === "SALE"
+      ? "https://schema.org/InStock"
+      : prop.listingType === "COMING_SOON"
+      ? "https://schema.org/PreOrder"
+      : "https://schema.org/InStock";
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": propertyUrl,
+    name: prop.title,
+    description: `${prop.title} — ${prop.price}, ${prop.sqft} sqft, ${prop.rooms} rooms, ${prop.location}.`,
+    url: propertyUrl,
+    image: [prop.image, ...(prop.gallery ?? [])].filter(Boolean),
+    sku: prop.id,
+    brand: {
+      "@type": "Brand",
+      name: "Fair Deal Property",
+    },
+    offers: {
+      "@type": "Offer",
+      "@id": `${propertyUrl}#offer`,
+      url: propertyUrl,
+      price: priceValue,
+      priceCurrency: "INR",
+      availability,
+      seller: {
+        "@type": "Organization",
+        name: "Fair Deal Property",
+        telephone: "+91-96100-16666",
+      },
+    },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Floor",
+        value: prop.floor,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Listing Type",
+        value: prop.listingType === "SALE" ? "For Sale" : prop.listingType === "RENT" ? "For Rent" : "Coming Soon",
+      },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: prop.address,
+      addressLocality: prop.location,
+      addressCountry: "IN",
+    },
+    floorSize: {
+      "@type": "QuantitativeValue",
+      value: sqftValue,
+      unitCode: "FTK",
+    },
+    numberOfRooms: roomsValue,
+    floorLevel: prop.floor,
+  };
+
+  return schema;
+}
 
 export async function generateMetadata({
   params,
@@ -67,8 +152,15 @@ export default async function PropertyDetail({
     `Hi Fair Deal Property! I am interested in "${prop.title}" (${prop.price}) located at ${prop.location}. Please share more details.`
   );
 
+  const schema = generatePropertySchema(prop);
+
   return (
     <>
+      <Script
+        id="property-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <section>
         <div className="mx-auto max-w-7xl px-8 md:px-12 pb-12">
           {/* Main Hero Image */}
