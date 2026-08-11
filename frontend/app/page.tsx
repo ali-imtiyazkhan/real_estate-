@@ -1,12 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import PropertyCard from "@/components/PropertyCard";
-import { getProperties } from "@/lib/api";
+import { getFeatures, getProperties } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const { data: saleProps } = await getProperties({ type: "sale", limit: 6 });
+  const [saleProps, features] = await Promise.all([
+    getProperties({ type: "sale", limit: 6 }),
+    getFeatures(),
+  ]);
 
   return (
     <>
@@ -53,6 +56,23 @@ export default async function Home() {
                 Fair Deal Property
               </h2>
             </div>
+            <div className="lg:col-span-3 mt-12">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-base-900 text-center">
+                Why choose us
+              </h3>
+              <div className="grid lg:grid-cols-2 lg:col-start-2 gap-8 mt-8 mx-auto max-w-4xl">
+                {features.data.map((f) => (
+                  <div key={f.id} className="flex flex-col">
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-medium text-base-900">
+                      {f.title}
+                    </h4>
+                    <p className="text-base mt-6 text-base-500 text-balance">
+                      {f.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -82,7 +102,7 @@ export default async function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 border-t border-base-200 pt-8 lg:grid-cols-3 gap-8 mt-8 group/props duration-500">
-            {saleProps.map((p) => (
+            {saleProps.data.map((p) => (
               <PropertyCard key={p.id} {...p} listingType={p.listingType} />
             ))}
           </div>
