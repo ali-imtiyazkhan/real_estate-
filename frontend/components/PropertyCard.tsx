@@ -32,6 +32,8 @@ export default function PropertyCard({
   listingType,
 }: PropertyCardProps) {
   const isComingSoon = listingType === "COMING_SOON";
+  const isSale = listingType === "SALE";
+  const isRent = listingType === "RENT";
 
   return (
     <Link
@@ -52,14 +54,26 @@ export default function PropertyCard({
         <div className="bg-white absolute bottom-0 right-0 px-4 py-3 text-xs font-medium uppercase tracking-wider text-base-900 shadow-sm translate-y-0 group-hover/card:-translate-y-0.5 transition-transform duration-300">
           View listing
         </div>
-        {isComingSoon && (
+        {(isComingSoon || isSale || isRent) && (
           <div className="absolute top-3 left-3 z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 text-white text-xs font-semibold uppercase tracking-wider rounded-full shadow-lg">
-              <svg className="w-3 h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
-              Coming Soon
-            </span>
+            {isComingSoon && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 text-white text-xs font-semibold uppercase tracking-wider rounded-full shadow-lg">
+                <svg className="w-3 h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                Coming Soon
+              </span>
+            )}
+            {isSale && (
+              <span className="inline-flex items-center px-3 py-1.5 bg-base-900 text-white text-xs font-semibold uppercase tracking-wider rounded-full shadow-lg">
+                For Sale
+              </span>
+            )}
+            {isRent && (
+              <span className="inline-flex items-center px-3 py-1.5 bg-accent-600 text-white text-xs font-semibold uppercase tracking-wider rounded-full shadow-lg">
+                For Rent
+              </span>
+            )}
           </div>
         )}
       </div>
