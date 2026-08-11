@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 const primaryNav = [
   { href: "/for-sale", label: "For sale" },
   { href: "/for-rent", label: "For rent" },
+  { href: "/coming-soon", label: "Coming soon" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -135,6 +136,7 @@ export default function Header() {
                     <ul className="list-none text-base-500 mt-4 text-base gap-1 list-inside grid grid-cols-1 md:grid-cols-2 lg:col-span-2">
                       <li><Link href="/for-sale" className="hover:text-base-900 py-1 inline-block transition-colors">Properties for sale</Link></li>
                       <li><Link href="/for-rent" className="hover:text-base-900 py-1 inline-block transition-colors">Properties for rent</Link></li>
+                      <li><Link href="/coming-soon" className="hover:text-base-900 py-1 inline-block transition-colors">Coming soon</Link></li>
                       <li><Link href="/sell-property" className="hover:text-base-900 py-1 inline-block transition-colors">Sell your property</Link></li>
                       <li><Link href="/contact" className="hover:text-base-900 py-1 inline-block transition-colors">Contact us</Link></li>
                     </ul>
