@@ -173,10 +173,16 @@ export default function PropertiesPanel({ token }: { token: string }) {
                     className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-widest ${
                       prop.listingType === "SALE"
                         ? "bg-base-900 text-white"
-                        : "bg-accent-600 text-white"
+                        : prop.listingType === "RENT"
+                        ? "bg-accent-600 text-white"
+                        : "bg-amber-500 text-white"
                     }`}
                   >
-                    {prop.listingType === "SALE" ? "For sale" : "For rent"}
+                    {prop.listingType === "SALE"
+                      ? "For sale"
+                      : prop.listingType === "RENT"
+                      ? "For rent"
+                      : "Coming soon"}
                   </span>
                 </div>
 
@@ -357,8 +363,8 @@ function PropertyForm({
           <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-base-500">
             Listing type
           </label>
-          <div className="grid grid-cols-2 gap-2 rounded-xl border border-base-200 bg-base-50 p-1.5">
-            {(["SALE", "RENT"] as const).map((t) => (
+          <div className="grid grid-cols-3 gap-2 rounded-xl border border-base-200 bg-base-50 p-1.5">
+            {(["SALE", "RENT", "COMING_SOON"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -369,7 +375,7 @@ function PropertyForm({
                     : "text-base-500 hover:text-base-900"
                 }`}
               >
-                {t === "SALE" ? "For Sale" : "For Rent"}
+                {t === "SALE" ? "For Sale" : t === "RENT" ? "For Rent" : "Coming Soon"}
               </button>
             ))}
           </div>
