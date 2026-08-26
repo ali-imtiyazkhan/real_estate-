@@ -1,9 +1,10 @@
 {
   "name": "backend",
   "module": "src/index.ts",
+  "type": "module",
   "private": true,
   "scripts": {
-    "build": "prisma generate",
+    "build": "prisma generate && esbuild api/index.ts --bundle --platform=node --format=esm --target=node18 --outfile=api/index.mjs --packages=external",
     "dev": "bun --watch src/index.ts",
     "start": "bun src/index.ts",
     "typecheck": "bunx tsc --noEmit",
@@ -19,7 +20,8 @@
     "@types/express": "^5.0.6",
     "@types/multer": "^2.2.0",
     "@types/node": "^26.1.2",
-    "@types/pg": "^8.20.3"
+    "@types/pg": "^8.20.3",
+    "esbuild": "^0.28.2"
   },
   "peerDependencies": {
     "typescript": "^5"
