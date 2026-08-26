@@ -719,8 +719,8 @@ app.use("/api/admin", admin_default);
 app.use(notFound);
 app.use(errorHandler);
 
-// api/index.ts
-var index_default = app;
+// src/serverless.ts
+var serverless_default = app;
 export {
-  index_default as default
+  serverless_default as default
 };
