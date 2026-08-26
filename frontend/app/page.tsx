@@ -7,8 +7,8 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const [saleProps, features] = await Promise.all([
-    getProperties({ type: "sale", limit: 6 }),
-    getFeatures(),
+    getProperties({ type: "sale", limit: 6 }).catch(() => ({ data: [], total: 0, limit: 6, offset: 0 })),
+    getFeatures().catch(() => ({ data: [] })),
   ]);
 
   return (

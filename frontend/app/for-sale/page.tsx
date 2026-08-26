@@ -23,7 +23,7 @@ export default async function ForSale({
     type: "sale",
     q: q || undefined,
     limit: 50,
-  });
+  }).catch(() => ({ data: [] }));
 
   return (
     <>

@@ -23,7 +23,7 @@ export default async function ComingSoon({
     type: (type as "sale" | "rent" | "coming-soon") || "coming-soon",
     q: q || undefined,
     limit: 50,
-  });
+  }).catch(() => ({ data: [] }));
 
   return (
     <>

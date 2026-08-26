@@ -21,7 +21,7 @@ export default async function ForRent({
     type: "rent",
     q: q || undefined,
     limit: 50,
-  });
+  }).catch(() => ({ data: [] }));
 
   return (
     <section className="overflow-hidden">
