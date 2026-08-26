@@ -1,9 +1,9 @@
 {
   "name": "backend",
   "module": "src/index.ts",
-  "type": "module",
   "private": true,
   "scripts": {
+    "build": "prisma generate",
     "dev": "bun --watch src/index.ts",
     "start": "bun src/index.ts",
     "typecheck": "bunx tsc --noEmit",

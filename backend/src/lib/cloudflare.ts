@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { env } from "../config/env";
 
-export const LOCAL_UPLOADS_DIR = join(import.meta.dir, "../../uploads");
+export const LOCAL_UPLOADS_DIR = join(process.cwd(), "uploads");
 
 let s3Client: S3Client | null = null;
 let s3Bucket: string | null = null;
