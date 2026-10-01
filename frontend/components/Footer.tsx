@@ -29,9 +29,9 @@ export default function Footer() {
               <Image
                 src="/logo.jpeg"
                 alt="Fair Deal Property"
-                width={100}
-                height={40}
-                className="h-9 w-auto"
+                width={140}
+                height={56}
+                className="h-14 w-auto"
               />
             </Link>
             <h2 className="text-4xl sm:text-5xl font-medium tracking-tight text-white leading-[1.05] mt-8">

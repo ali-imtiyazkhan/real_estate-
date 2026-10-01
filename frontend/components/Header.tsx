@@ -57,9 +57,9 @@ export default function Header() {
               <Image
                 src="/logo.jpeg"
                 alt="Logo"
-                width={100}
-                height={40}
-                className="h-8 w-auto"
+                width={110}
+                height={44}
+                className="h-11 w-auto"
               />
             </Link>
 
