@@ -57,10 +57,10 @@ export default function Header() {
               <Image
                 src="/logo.jpeg"
                 alt="Logo"
-                width={200}
-                height={80}
+                width={320}
+                height={128}
                 priority
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-24 md:h-28 lg:h-32 w-auto object-contain"
               />
             </Link>
 
