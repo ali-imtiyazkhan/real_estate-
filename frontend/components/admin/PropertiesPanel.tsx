@@ -11,6 +11,7 @@ import {
   type Property,
   type PropertyInput,
 } from "@/lib/api";
+import { compressImage } from "@/lib/image";
 
 const emptyForm: PropertyInput = {
   slug: "",
@@ -523,7 +524,8 @@ function ImageUploader({
     setUploading(true);
     setError("");
     try {
-      const res = await uploadAdminImage(token, file);
+      const compressed = await compressImage(file);
+      const res = await uploadAdminImage(token, compressed);
       onUploaded(res.data.url);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
