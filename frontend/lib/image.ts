@@ -1,10 +1,25 @@
 const MAX_UPLOAD_BYTES = 4.3 * 1024 * 1024;
 const MAX_EDGE = 2560;
 const QUALITIES = [0.85, 0.75, 0.65, 0.55, 0.45, 0.35];
-const COMPRESSIBLE = new Set(["image/jpeg", "image/png", "image/webp"]);
+const PASSTHROUGH_TYPES = new Set(["image/gif"]);
 
 function formatSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function passthrough(file: File): File {
+  if (file.size > MAX_UPLOAD_BYTES) {
+    throw new Error(
+      `File is ${formatSize(file.size)}. Maximum upload size is 4.5 MB (this file type cannot be compressed).`
+    );
+  }
+  return file;
+}
+
+function encodeTypes(type: string): string[] {
+  if (type === "image/png") return ["image/png", "image/webp", "image/jpeg"];
+  if (type === "image/jpeg" || type === "image/webp") return [type];
+  return ["image/webp", "image/jpeg"];
 }
 
 function loadImage(file: File): Promise<ImageBitmap> {
@@ -24,23 +39,15 @@ function blobToType(blob: Blob, type: string, name: string): File {
 }
 
 export async function compressImage(file: File): Promise<File> {
-  if (!file.type.startsWith("image/") || !COMPRESSIBLE.has(file.type)) {
-    if (file.size > MAX_UPLOAD_BYTES) {
-      throw new Error(
-        `File is ${formatSize(file.size)}. Maximum upload size is 4.5 MB (this file type cannot be compressed).`
-      );
-    }
-    return file;
+  if (!file.type.startsWith("image/") || PASSTHROUGH_TYPES.has(file.type)) {
+    return passthrough(file);
   }
 
   let source: ImageBitmap;
   try {
     source = await loadImage(file);
   } catch {
-    if (file.size > MAX_UPLOAD_BYTES) {
-      throw new Error(`File is ${formatSize(file.size)} and could not be read. Please pick a smaller image.`);
-    }
-    return file;
+    return passthrough(file);
   }
 
   const width = source.width;
@@ -57,7 +64,7 @@ export async function compressImage(file: File): Promise<File> {
 
   if (file.size <= MAX_UPLOAD_BYTES && scale === 1) return file;
 
-  const types = file.type === "image/png" ? ["image/png", "image/webp", "image/jpeg"] : [file.type];
+  const types = encodeTypes(file.type);
   let smallest: Blob | null = null;
 
   for (const type of types) {

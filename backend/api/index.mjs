@@ -584,6 +584,10 @@ var MIME_EXTENSIONS = {
   "image/webp": ".webp",
   "image/gif": ".gif",
   "image/avif": ".avif",
+  "image/heic": ".heic",
+  "image/heif": ".heif",
+  "image/bmp": ".bmp",
+  "image/tiff": ".tiff",
   "video/mp4": ".mp4",
   "video/webm": ".webm",
   "video/quicktime": ".mov",
@@ -612,17 +616,26 @@ var ALLOWED_MIME_TYPES = /* @__PURE__ */ new Set([
   "image/webp",
   "image/gif",
   "image/avif",
+  "image/heic",
+  "image/heif",
+  "image/bmp",
+  "image/tiff",
   "video/mp4",
   "video/webm",
   "video/quicktime",
-  "video/ogg"
+  "video/ogg",
+  "application/pdf"
 ]);
 var upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 50 * 1024 * 1024, files: 1 },
   fileFilter: (_req, file, cb) => {
     if (!ALLOWED_MIME_TYPES.has(file.mimetype)) {
-      cb(new Error("Unsupported file type. Allowed: jpg, png, webp, gif, avif, mp4, webm, mov, ogv"));
+      cb(
+        new Error(
+          "Unsupported file type. Allowed: jpg, png, webp, gif, avif, heic, bmp, tiff, mp4, webm, mov, ogv, pdf"
+        )
+      );
       return;
     }
     cb(null, true);

@@ -18,10 +18,15 @@ const ALLOWED_MIME_TYPES = new Set([
   "image/webp",
   "image/gif",
   "image/avif",
+  "image/heic",
+  "image/heif",
+  "image/bmp",
+  "image/tiff",
   "video/mp4",
   "video/webm",
   "video/quicktime",
   "video/ogg",
+  "application/pdf",
 ]);
 
 const upload = multer({
@@ -29,7 +34,11 @@ const upload = multer({
   limits: { fileSize: 50 * 1024 * 1024, files: 1 },
   fileFilter: (_req, file, cb) => {
     if (!ALLOWED_MIME_TYPES.has(file.mimetype)) {
-      cb(new Error("Unsupported file type. Allowed: jpg, png, webp, gif, avif, mp4, webm, mov, ogv"));
+      cb(
+        new Error(
+          "Unsupported file type. Allowed: jpg, png, webp, gif, avif, heic, bmp, tiff, mp4, webm, mov, ogv, pdf",
+        ),
+      );
       return;
     }
     cb(null, true);
